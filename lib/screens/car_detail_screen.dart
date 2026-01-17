@@ -20,7 +20,7 @@ class CarDetailScreen extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  AppTheme.primaryColor.withOpacity(0.3),
+                  car.backgroundColor,
                   AppTheme.backgroundColor,
                   AppTheme.surfaceColor,
                 ],

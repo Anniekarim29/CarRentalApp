@@ -72,21 +72,32 @@ class CarCard extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  Hero(
-                    tag: 'car-${car.imagePath}',
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Image.asset(
-                        car.imagePath,
-                        height: 250, // Much larger!
-                        width: double.infinity,
-                        fit: BoxFit.contain,
+                  Container(
+                    margin: const EdgeInsets.all(12),
+                    height: 320,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: car.backgroundColor,
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    child: Hero(
+                      tag: 'car-${car.imagePath}',
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(24),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+                          child: Image.asset(
+                            car.imagePath,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                   Positioned(
-                    top: 20,
-                    right: 20,
+                    top: 25,
+                    right: 25,
                     child: Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(

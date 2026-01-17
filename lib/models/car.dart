@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Car {
   final String name;
   final String brand;
@@ -7,6 +9,7 @@ class Car {
   final String imagePath;
   final String category;
   final String description;
+  final Color backgroundColor;
 
   Car({
     required this.name,
@@ -17,6 +20,7 @@ class Car {
     required this.imagePath,
     required this.category,
     required this.description,
+    required this.backgroundColor,
   });
 
   static List<Car> cars = [
@@ -29,6 +33,7 @@ class Car {
       imagePath: 'assets/porche.png',
       category: 'GT3',
       description: 'The Porsche 911 GT3 Cup is the first race car based on the current 911 model series 992. It is a powerful, high-performance racing machine designed for competition.',
+      backgroundColor: const Color(0xFFE3F2FD),
     ),
     Car(
       name: 'M4 Competition',
@@ -39,6 +44,7 @@ class Car {
       imagePath: 'assets/bmw.png',
       category: 'Sports',
       description: 'The BMW M4 Competition Coupe is a high-performance sports car that combines track-ready performance with everyday usability.',
+      backgroundColor: const Color(0xFFF3E5F5),
     ),
     Car(
       name: 'R8 V10 Performance',
@@ -49,6 +55,7 @@ class Car {
       imagePath: 'assets/audi.png',
       category: 'Supercar',
       description: 'The Audi R8 V10 Performance is a masterpiece of engineering, featuring a screaming naturally aspirated V10 engine and striking design.',
+      backgroundColor: const Color(0xFFFFF3E0),
     ),
     Car(
       name: 'AMG GT R',
@@ -59,6 +66,7 @@ class Car {
       imagePath: 'assets/mercedes.png',
       category: 'Sports',
       description: 'The Mercedes-AMG GT R is developed directly from the GT3 race car, offering incredible grip and precision on both track and road.',
+      backgroundColor: const Color(0xFFE8F5E9),
     ),
   ];
 }
