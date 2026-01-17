@@ -21,20 +21,43 @@ class CarCard extends StatelessWidget {
           Navigator.push(
             context,
             PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 600),
+              transitionDuration: const Duration(milliseconds: 800),
+              reverseTransitionDuration: const Duration(milliseconds: 600),
               pageBuilder: (context, animation, secondaryAnimation) =>
                   CarDetailScreen(car: car),
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                var scaleTween = Tween<double>(begin: 0.8, end: 1.0).chain(
+                // Smooth slide from bottom
+                var slideTween = Tween<Offset>(
+                  begin: const Offset(0.0, 0.3),
+                  end: Offset.zero,
+                ).chain(CurveTween(curve: Curves.easeInOutCubic));
+
+                // Smooth scale with bounce
+                var scaleTween = Tween<double>(begin: 0.85, end: 1.0).chain(
                   CurveTween(curve: Curves.easeOutBack),
                 );
-                var fadeTween = Tween<double>(begin: 0.0, end: 1.0);
-                
-                return ScaleTransition(
-                  scale: animation.drive(scaleTween),
-                  child: FadeTransition(
-                    opacity: animation.drive(fadeTween),
-                    child: child,
+
+                // Smooth fade
+                var fadeTween = Tween<double>(begin: 0.0, end: 1.0).chain(
+                  CurveTween(curve: Curves.easeIn),
+                );
+
+                // Subtle rotation
+                var rotateTween = Tween<double>(begin: -0.02, end: 0.0).chain(
+                  CurveTween(curve: Curves.easeOutCubic),
+                );
+
+                return SlideTransition(
+                  position: animation.drive(slideTween),
+                  child: ScaleTransition(
+                    scale: animation.drive(scaleTween),
+                    child: FadeTransition(
+                      opacity: animation.drive(fadeTween),
+                      child: RotationTransition(
+                        turns: animation.drive(rotateTween),
+                        child: child,
+                      ),
+                    ),
                   ),
                 );
               },

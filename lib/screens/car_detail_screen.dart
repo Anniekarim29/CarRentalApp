@@ -106,6 +106,29 @@ class CarDetailScreen extends StatelessWidget {
                   child: Center(
                     child: Hero(
                       tag: 'car-${car.imagePath}',
+                      flightShuttleBuilder: (
+                        BuildContext flightContext,
+                        Animation<double> animation,
+                        HeroFlightDirection flightDirection,
+                        BuildContext fromHeroContext,
+                        BuildContext toHeroContext,
+                      ) {
+                        final Hero toHero = toHeroContext.widget as Hero;
+                        
+                        // Smooth rotation during flight
+                        return RotationTransition(
+                          turns: Tween<double>(
+                            begin: 0.0,
+                            end: flightDirection == HeroFlightDirection.push ? 0.05 : -0.05,
+                          ).chain(CurveTween(curve: Curves.easeInOutCubic)).animate(animation),
+                          child: ScaleTransition(
+                            scale: Tween<double>(begin: 1.0, end: 1.1).chain(
+                              CurveTween(curve: Curves.easeInOutCubic),
+                            ).animate(animation),
+                            child: toHero.child,
+                          ),
+                        );
+                      },
                       child: ZoomIn(
                         delay: const Duration(milliseconds: 300),
                         child: Image.asset(
@@ -170,51 +193,55 @@ class CarDetailScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 35),
-                        // Rent Button
-                        SizedBox(
-                          width: double.infinity,
-                          height: 65,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
-                              foregroundColor: Colors.white,
-                              padding: EdgeInsets.zero,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              elevation: 0,
-                            ),
-                            child: Ink(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [AppTheme.primaryColor, AppTheme.secondaryColor],
+                        // Rent Button with Pulse Animation
+                        Pulse(
+                          infinite: true,
+                          duration: const Duration(seconds: 2),
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: 65,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.transparent,
+                                foregroundColor: Colors.white,
+                                padding: EdgeInsets.zero,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                                borderRadius: BorderRadius.circular(20),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppTheme.primaryColor.withOpacity(0.6),
-                                    blurRadius: 20,
-                                    spreadRadius: 2,
-                                    offset: const Offset(0, 8),
-                                  ),
-                                ],
+                                elevation: 0,
                               ),
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(Icons.drive_eta, size: 24),
-                                    const SizedBox(width: 12),
-                                    Text(
-                                      'Rent This Car Now',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 19,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              child: Ink(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [AppTheme.primaryColor, AppTheme.secondaryColor],
+                                  ),
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppTheme.primaryColor.withOpacity(0.6),
+                                      blurRadius: 20,
+                                      spreadRadius: 2,
+                                      offset: const Offset(0, 8),
                                     ),
                                   ],
+                                ),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Icon(Icons.drive_eta, size: 24),
+                                      const SizedBox(width: 12),
+                                      Text(
+                                        'Rent This Car Now',
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
