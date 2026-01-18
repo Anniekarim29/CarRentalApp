@@ -131,10 +131,13 @@ class CarDetailScreen extends StatelessWidget {
                       },
                       child: ZoomIn(
                         delay: const Duration(milliseconds: 300),
-                        child: Image.asset(
-                          car.imagePath,
-                          fit: BoxFit.contain,
-                          width: MediaQuery.of(context).size.width * 0.95,
+                        child: Transform.scale(
+                          scale: 1.25, // Increased scale for larger appearance
+                          child: Image.asset(
+                            car.imagePath,
+                            fit: BoxFit.contain,
+                            width: MediaQuery.of(context).size.width,
+                          ),
                         ),
                       ),
                     ),
@@ -145,7 +148,7 @@ class CarDetailScreen extends StatelessWidget {
                 FadeInUp(
                   delay: const Duration(milliseconds: 400),
                   child: Container(
-                    padding: const EdgeInsets.all(32),
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [AppTheme.surfaceColor, AppTheme.cardColor],

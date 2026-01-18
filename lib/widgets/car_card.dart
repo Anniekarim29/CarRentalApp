@@ -96,8 +96,8 @@ class CarCard extends StatelessWidget {
               Stack(
                 children: [
                   Container(
-                    margin: const EdgeInsets.all(12),
-                    height: 320,
+                    margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    height: index == 0 ? 400 : 340,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: car.backgroundColor,
@@ -108,11 +108,11 @@ class CarCard extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(24),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+                          padding: const EdgeInsets.all(0),
                           child: Image.asset(
                             car.imagePath,
                             width: double.infinity,
-                            fit: BoxFit.cover,
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),
@@ -167,12 +167,15 @@ class CarCard extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                car.brand,
-                                style: GoogleFonts.poppins(
-                                  color: AppTheme.primaryColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                              Flexible(
+                                child: Text(
+                                  car.brand,
+                                  style: GoogleFonts.poppins(
+                                    color: AppTheme.primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                               const SizedBox(width: 10),

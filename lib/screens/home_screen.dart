@@ -66,9 +66,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: 2,
                             ),
                           ),
-                          child: const CircleAvatar(
+                          child: CircleAvatar(
                             radius: 22,
-                            backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=declan'),
+                            backgroundColor: AppTheme.primaryColor.withOpacity(0.3),
+                            child: Text(
+                              'DB',
+                              style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
                           ),
                         ),
                         const SizedBox(width: 12),
