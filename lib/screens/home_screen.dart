@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             colors: [AppTheme.primaryColor, AppTheme.secondaryColor],
                           ).createShader(bounds),
                           child: Text(
-                            'Declan Bryant',
+                            'Annie Karim',
                             style: GoogleFonts.poppins(
                               fontWeight: FontWeight.bold,
                               fontSize: 28,
@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             radius: 22,
                             backgroundColor: AppTheme.primaryColor.withOpacity(0.3),
                             child: Text(
-                              'DB',
+                              'AK',
                               style: GoogleFonts.poppins(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
