@@ -101,7 +101,7 @@ class CarDetailScreen extends StatelessWidget {
                   ),
                 ),
 
-                // Full Screen Car Image with Hero
+                // Full Screen Car Image with Hero and Bounce Animation
                 Expanded(
                   child: Center(
                     child: Hero(
@@ -122,21 +122,33 @@ class CarDetailScreen extends StatelessWidget {
                             end: flightDirection == HeroFlightDirection.push ? 0.05 : -0.05,
                           ).chain(CurveTween(curve: Curves.easeInOutCubic)).animate(animation),
                           child: ScaleTransition(
-                            scale: Tween<double>(begin: 1.0, end: 1.1).chain(
+                            scale: Tween<double>(begin: 1.0, end: 1.15).chain(
                               CurveTween(curve: Curves.easeInOutCubic),
                             ).animate(animation),
                             child: toHero.child,
                           ),
                         );
                       },
-                      child: ZoomIn(
+                      child: Bounce(
                         delay: const Duration(milliseconds: 300),
                         child: Transform.scale(
-                          scale: 1.25, // Increased scale for larger appearance
-                          child: Image.asset(
-                            car.imagePath,
-                            fit: BoxFit.contain,
-                            width: MediaQuery.of(context).size.width,
+                          scale: 1.3, // Increased scale for even larger appearance
+                          child: Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: car.backgroundColor.withOpacity(0.3),
+                                  blurRadius: 40,
+                                  spreadRadius: 10,
+                                  offset: const Offset(0, 20),
+                                ),
+                              ],
+                            ),
+                            child: Image.asset(
+                              car.imagePath,
+                              fit: BoxFit.contain,
+                              width: MediaQuery.of(context).size.width,
+                            ),
                           ),
                         ),
                       ),

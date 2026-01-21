@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // Vibrant gradient colors
-  static const Color primaryColor = Color(0xFFFF6B35); // Vibrant Orange
-  static const Color secondaryColor = Color(0xFFF7931E); // Golden Orange
-  static const Color accentColor = Color(0xFF00D9FF); // Electric Cyan
-  static const Color backgroundColor = Color(0xFF0A0E27); // Deep Navy
-  static const Color surfaceColor = Color(0xFF1A1F3A); // Dark Purple-Blue
-  static const Color cardColor = Color(0xFF252B48); // Elevated Card
+  // Vibrant gradient colors - Enhanced
+  static const Color primaryColor = Color(0xFFFF4757); // Vibrant Red-Orange
+  static const Color secondaryColor = Color(0xFFFF6348); // Coral Orange
+  static const Color accentColor = Color(0xFF1E90FF); // Dodger Blue
+  static const Color backgroundColor = Color(0xFF0D0D1E); // Deeper Navy
+  static const Color surfaceColor = Color(0xFF1C1C3A); // Rich Purple-Blue
+  static const Color cardColor = Color(0xFF2A2D4A); // Enhanced Card
 
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,

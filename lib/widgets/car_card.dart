@@ -97,11 +97,19 @@ class CarCard extends StatelessWidget {
                 children: [
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                    height: index == 0 ? 400 : 340,
+                    height: index == 0 ? 420 : 340,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: car.backgroundColor,
                       borderRadius: BorderRadius.circular(24),
+                      boxShadow: [
+                        BoxShadow(
+                          color: car.backgroundColor.withOpacity(0.4),
+                          blurRadius: 25,
+                          spreadRadius: 5,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
                     ),
                     child: Hero(
                       tag: 'car-${car.imagePath}',
